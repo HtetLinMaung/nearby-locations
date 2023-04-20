@@ -1,16 +1,33 @@
 {
   "name": "nearby-locations",
   "version": "1.0.0",
-  "description": "",
+  "description": "A simple Node.js package to find nearby locations within a specified distance using the Haversine formula. Written in TypeScript.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HtetLinMaung/nearby-locations.git"
+  },
   "scripts": {
     "build": "tsc"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "location",
+    "distance",
+    "geospatial",
+    "haversine",
+    "coordinates",
+    "nearby"
+  ],
+  "author": "Htet Lin Maung <jsthtet96@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "typescript": "^5.0.4"
+  },
+  "files": [
+    "lib/"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
   }
 }
