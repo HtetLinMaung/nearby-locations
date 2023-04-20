@@ -10,3 +10,12 @@ export type Coordinate = {
  * @returns Array of nearby locations within the specified distance
  */
 export declare function nearbyLocations(centralLocation: Coordinate, locations: Coordinate[], maxDistance: number): Coordinate[];
+export type DbType = "mongoose" | "sequelize";
+export interface NearbyConditionOptions {
+    latitude: number;
+    longitude: number;
+    maxDistance: number;
+    latitudeColumnName?: string;
+    longitudeColumnName?: string;
+}
+export declare function getNearbyCondition(options: NearbyConditionOptions, dbType: DbType): object | string;

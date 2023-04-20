@@ -48,3 +48,40 @@ export function nearbyLocations(
     (location) => haversineDistance(centralLocation, location) <= maxDistance
   );
 }
+
+export type DbType = "mongoose" | "sequelize";
+
+export interface NearbyConditionOptions {
+  latitude: number;
+  longitude: number;
+  maxDistance: number;
+  latitudeColumnName?: string;
+  longitudeColumnName?: string;
+}
+
+export function getNearbyCondition(
+  options: NearbyConditionOptions,
+  dbType: DbType
+): object | string {
+  const { latitude, longitude, maxDistance } = options;
+  const maxDistanceMeters = maxDistance * 1000;
+
+  if (dbType === "mongoose") {
+    return {
+      $near: {
+        $geometry: {
+          type: "Point",
+          coordinates: [longitude, latitude],
+        },
+        $maxDistance: maxDistanceMeters,
+      },
+    };
+  } else if (dbType === "sequelize") {
+    const latitudeColumnName = options.latitudeColumnName || "latitude";
+    const longitudeColumnName = options.longitudeColumnName || "longitude";
+
+    return `earth_box(ll_to_earth(${latitude}, ${longitude}), ${maxDistanceMeters}) @> ll_to_earth(${latitudeColumnName}, ${longitudeColumnName}) and earth_distance(ll_to_earth(${latitude}, ${longitude}), ll_to_earth(${latitudeColumnName}, ${longitudeColumnName})) <= ${maxDistanceMeters}`;
+  } else {
+    throw new Error("Unsupported dbType");
+  }
+}
