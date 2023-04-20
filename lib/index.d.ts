@@ -1,4 +1,4 @@
-type Coordinate = {
+export type Coordinate = {
     latitude: number;
     longitude: number;
 };
@@ -10,4 +10,3 @@ type Coordinate = {
  * @returns Array of nearby locations within the specified distance
  */
 export declare function nearbyLocations(centralLocation: Coordinate, locations: Coordinate[], maxDistance: number): Coordinate[];
-export {};
