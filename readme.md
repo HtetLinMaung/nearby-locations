@@ -1,11 +1,11 @@
-# nearby-locations
+# nearby-locations-ts
 
 A simple Node.js package to find nearby locations within a specified distance using the Haversine formula. Written in TypeScript.
 
 ## Installation
 
 ```bash
-npm install nearby-locations
+npm install nearby-locations-ts
 ```
 
 ## Usage
@@ -13,7 +13,7 @@ npm install nearby-locations
 Import the `nearbyLocations` function and the `Coordinate` type from the package:
 
 ```typescript
-import { nearbyLocations, Coordinate } from "nearby-locations";
+import { nearbyLocations, Coordinate } from "nearby-locations-ts";
 ```
 
 Define a central location, an array of other locations, and a maximum distance in kilometers:
